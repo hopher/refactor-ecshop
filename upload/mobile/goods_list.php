@@ -18,6 +18,17 @@ define('IN_ECS', true);
 require(dirname(__FILE__) . '/includes/init.php');
 
 $type = !empty($_GET['type']) ? $_GET['type'] : 'best';
+
+$temp_type=array();
+$temp_type=array('best','promote','hot','new');
+if(!in_array($type,$temp_type))
+{
+    $type='best';
+}
+$_GET['type']=$type;
+
+
+
 if ($type != 'best' && $type != 'promote' && $type != 'hot' && $type != 'new')
 {
     $type = 'best';
@@ -51,6 +62,7 @@ if ($num > 0)
     }
     $page_num = '10';
     $page = !empty($_GET['page']) ? intval($_GET['page']) : 1;
+    $_GET['page']=$page;
     $pages = ceil($num / $page_num);
     if ($page <= 0)
     {

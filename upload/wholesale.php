@@ -275,8 +275,12 @@ elseif ($_REQUEST['act'] == 'add_to_cart')
         $goods_attr_name = '';
         if (!empty($goods['goods_attr']))
         {
-            foreach ($goods['goods_attr'] as $attr)
+            foreach ($goods['goods_attr'] as $key=> $attr)
             {
+                $attr['attr_name']=htmlspecialchars($attr['attr_name']);
+                $goods['goods_attr'][$key]['attr_name']=$attr['attr_name'];
+                $attr['attr_val'] =htmlspecialchars($attr['attr_val']);
+                $goods['goods_attr'][$key]['attr_name']=$attr['attr_name'];
                 $goods_attr_name .= $attr['attr_name'] . '：' . $attr['attr_val'] . '&nbsp;';
             }
         }

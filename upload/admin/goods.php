@@ -635,9 +635,14 @@ elseif ($_REQUEST['act'] == 'insert' || $_REQUEST['act'] == 'update')
         {
             $original_img   = $image->upload_image($_FILES['goods_img']); // 原始图片
         }
-        elseif (copy(trim($_POST['goods_img_url']), ROOT_PATH . 'temp/' . basename($_POST['goods_img_url'])))
+        elseif ($_POST['goods_img_url'])
         {
-            $original_img = 'temp/' . basename($_POST['goods_img_url']);
+            
+            if(preg_match('/(.jpg|.png|.gif|.jpeg)$/',$_POST['goods_img_url']) && copy(trim($_POST['goods_img_url']), ROOT_PATH . 'temp/' . basename($_POST['goods_img_url'])))
+            {
+                  $original_img = 'temp/' . basename($_POST['goods_img_url']);
+            }
+            
         }
 
         if ($original_img === false)

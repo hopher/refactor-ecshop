@@ -17,8 +17,8 @@ if (!defined('IN_ECS'))
 {
     die('Hacking attempt');
 }
-define('SOURCE_TOKEN', '814d4852d74f5914b41695ee7fa8508c');
-define('SOURCE_ID', '863180');
+define('SOURCE_TOKEN', 'b11983d30cb6821158744d5d065d0f70');
+define('SOURCE_ID', '620386');
 require_once(ROOT_PATH . 'includes/cls_transport.php');
 require_once(ROOT_PATH . 'includes/shopex_json.php');
 
@@ -142,24 +142,64 @@ class sms
 
             return false;
         }
-        
-        $send_str['contents']= $this->json->encode($contents);
-        $send_str['certi_app']='sms.send';
-        $send_str['entId']=$GLOBALS['_CFG']['ent_id'];
-        $send_str['entPwd']=$GLOBALS['_CFG']['ent_ac'];
-        $send_str['license']=$GLOBALS['_CFG']['certificate_id'];
-        $send_str['source']=SOURCE_ID;   
-        $send_str['sendType'] = 'notice';
-        $send_str['use_backlist'] = '1';
-        $send_str['version'] = $version;
-        $send_str['format']='json'; 
-        $send_str['timestamp'] = $this->getTime(); 
-        $send_str['certi_ac']=$this->make_shopex_ac($send_str,SOURCE_TOKEN);
-        $sms_url= $this->get_url('send');
-        /* 发送HTTP请求 */
-        $response = $this->t->request($sms_url, $send_str,'POST');
-        $result = $this->json->decode($response['body'], true);
-        
+
+        $t_contents=array();
+        if(count($contents)>1)
+        {
+            foreach ($contents as $key=>$val)
+            {
+                $t_contents['0']['phones']=$val['phones'];
+                $t_contents['0']['content']=$val['content'];
+                $send_str['contents']= $this->json->encode($t_contents);
+                $send_str['certi_app']='sms.send';
+                $send_str['entId']=$GLOBALS['_CFG']['ent_id'];
+                $send_str['entPwd']=$GLOBALS['_CFG']['ent_ac'];
+                $send_str['license']=$GLOBALS['_CFG']['certificate_id'];
+                $send_str['source']=SOURCE_ID;
+
+                $send_str['sendType'] = 'fan-out';
+                $send_str['use_backlist'] = '1';
+                $send_str['version'] = $version;
+                $send_str['format']='json'; 
+                $send_str['timestamp'] = $this->getTime(); 
+                $send_str['certi_ac']=$this->make_shopex_ac($send_str,SOURCE_TOKEN);
+                $sms_url= $this->get_url('send');
+                $arr = json_decode($send_str['contents'],true);
+                /* 发送HTTP请求 */
+                $response = $this->t->request($sms_url, $send_str,'POST');
+                $result = $this->json->decode($response['body'], true);
+                sleep(1);
+            }
+        }
+        else
+        {
+            if(strlen($contents['0']['phones'])>20)
+            {
+                $send_str['sendType'] = 'fan-out';
+            }
+            else
+            {
+                 $send_str['sendType'] = 'notice';
+            }
+            $send_str['contents']= $this->json->encode($contents);
+            $send_str['certi_app']='sms.send';
+            $send_str['entId']=$GLOBALS['_CFG']['ent_id'];
+            $send_str['entPwd']=$GLOBALS['_CFG']['ent_ac'];
+            $send_str['license']=$GLOBALS['_CFG']['certificate_id'];
+            $send_str['source']=SOURCE_ID;
+
+            $send_str['use_backlist'] = '1';
+            $send_str['version'] = $version;
+            $send_str['format']='json'; 
+            $send_str['timestamp'] = $this->getTime(); 
+            $send_str['certi_ac']=$this->make_shopex_ac($send_str,SOURCE_TOKEN);
+            $sms_url= $this->get_url('send');
+            $arr = json_decode($send_str['contents'],true);
+            /* 发送HTTP请求 */
+            $response = $this->t->request($sms_url, $send_str,'POST');
+            $result = $this->json->decode($response['body'], true);
+        }
+
         if($result['res'] == 'succ')
         {
             return true;
@@ -276,8 +316,9 @@ class sms
         {
             return false;
         }
+        $msg.='【'. $GLOBALS['_CFG']['shop_name'].'】';
         $phone_key=0;
-
+        $i=0;
         $phones=explode(',',$phones);
         foreach($phones as $key => $value)
         {
@@ -371,7 +412,7 @@ class sms
        $str = '';
        foreach($temp_arr as $key=>$value)
        {
-            if($key!=' certi_ac') 
+            if($key!='certi_ac') 
             {
                $str.= $value;
             }

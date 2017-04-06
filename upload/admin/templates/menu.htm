@@ -377,7 +377,7 @@ Object.extend(ToggleHanlder ,{
   {
     if (document.getCookie(this.CookieName) != null)
     {
-      this.SourceObject = eval("("+ document.getCookie(this.CookieName) +")");
+      this.SourceObject = t_eval();
       var items = document.getElementsByTagName('LI');
       for (var i = 0; i < items.length; i++)
       {

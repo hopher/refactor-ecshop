@@ -1626,6 +1626,7 @@ function get_cart_goods()
         /* 查询规格 */
         if (trim($row['goods_attr']) != '')
         {
+            $row['goods_attr']=addslashes($row['goods_attr']);
             $sql = "SELECT attr_value FROM " . $GLOBALS['ecs']->table('goods_attr') . " WHERE goods_attr_id " .
             db_create_in($row['goods_attr']);
             $attr_list = $GLOBALS['db']->getCol($sql);

@@ -775,7 +775,7 @@ function make_semiangle($str)
  */
 function compile_str($str)
 {
-    $arr = array('<' => '＜', '>' => '＞');
+    $arr = array('<' => '＜', '>' => '＞','"'=>'”',"'"=>'’');
 
     return strtr($str, $arr);
 }

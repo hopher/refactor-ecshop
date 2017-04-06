@@ -304,6 +304,7 @@ elseif ($_REQUEST['act'] == 'drop_file')
 {
     /* 删除上传的文件 */
     $file = $_GET['file'];
+    $file = str_replace('/','',$file);
     @unlink('../' . DATA_DIR . '/feedbackimg/'.$file);
 
     /* 更新数据库 */

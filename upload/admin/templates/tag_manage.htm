@@ -23,7 +23,7 @@
   {foreach from=$tag_list item=tag}
   <tr>
     <td><span><input name="checkboxes[]" type="checkbox" value="{$tag.tag_id}">{$tag.tag_id}</span></td>
-    <td class="first-cell"><span onclick="javascript:listTable.edit(this, 'edit_tag_name', {$tag.tag_id})">{$tag.tag_words}</span></td>
+    <td class="first-cell"><span onclick="javascript:listTable.edit(this, 'edit_tag_name', {$tag.tag_id})">{$tag.tag_words|escape}</span></td>
     <td align="left"><span>{$tag.user_name}</span></td>
     <td align="left"><span><a href="../goods.php?id={$tag.goods_id}" target="_blank">{$tag.goods_name}</a></span></td>
     <td align="center">

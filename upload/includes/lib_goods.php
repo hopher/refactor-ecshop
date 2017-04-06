@@ -943,6 +943,18 @@ function spec_price($spec)
 {
     if (!empty($spec))
     {
+        if(is_array($spec))
+        {
+            foreach($spec as $key=>$val)
+            {
+                $spec[$key]=addslashes($val);
+            }
+        }
+        else
+        {
+            $spec=addslashes($spec);
+        }
+
         $where = db_create_in($spec, 'goods_attr_id');
 
         $sql = 'SELECT SUM(attr_price) AS attr_price FROM ' . $GLOBALS['ecs']->table('goods_attr') . " WHERE $where";
