@@ -529,7 +529,7 @@ function copy_files($source, $target)
     if (!file_exists($target))
     {
         //if (!mkdir(rtrim($target, '/'), 0777))
-        if (!mkdir($target, 0777))
+        if (!mkdir($target, 0777, true))
         {
             $err->add($_LANG['cannt_mk_dir']);
             return false;
