@@ -69,24 +69,6 @@ if (isset($set_modules) && $set_modules == TRUE)
  */
 class alipay
 {
-
-    /**
-     * 构造函数
-     *
-     * @access  public
-     * @param
-     *
-     * @return void
-     */
-    function alipay()
-    {
-    }
-
-    function __construct()
-    {
-        $this->alipay();
-    }
-
     /**
      * 生成支付代码
      * @param   array   $order      订单信息

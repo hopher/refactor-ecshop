@@ -65,23 +65,6 @@ if (isset($set_modules) && $set_modules == TRUE)
 class post
 {
     /**
-     * 构造函数
-     *
-     * @access  public
-     * @param
-     *
-     * @return void
-     */
-    function post()
-    {
-    }
-
-    function __construct()
-    {
-        $this->post();
-    }
-
-    /**
      * 提交函数
      */
     function get_code()

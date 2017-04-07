@@ -65,24 +65,6 @@ if (isset($set_modules) && $set_modules == true)
 
 class shenzhou
 {
-    /**
-     * 构造函数
-     *
-     * @access  public
-     * @param
-     *
-     * @return void
-     */
-
-    function shenzhou()
-    {
-    }
-
-    function __construct()
-    {
-        $this->shenzhou();
-    }
-
    /**
      * 生成支付代码
      * @param   array   $order  订单信息

@@ -71,23 +71,6 @@ if (isset($set_modules) && $set_modules == TRUE)
 class chinabank
 {
     /**
-     * 构造函数
-     *
-     * @access  public
-     * @param
-     *
-     * @return void
-     */
-    function chinabank()
-    {
-    }
-
-    function __construct()
-    {
-        $this->chinabank();
-    }
-
-    /**
      * 生成支付代码
      * @param   array   $order      订单信息
      * @param   array   $payment    支付方式信息

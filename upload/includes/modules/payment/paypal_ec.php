@@ -78,28 +78,6 @@ if (isset($set_modules) && $set_modules == TRUE)
  */
 class paypal_ec
 {
-
-
-    /**
-     * 构造函数
-     *
-     * @access  public
-     * @param
-     *
-     * @return void
-     */
-    function paypal_ec()
-    {
-
-    }
-
-    function __construct()
-    {
-        $this->paypal_ec();
-    }
-
-
-
     /**
      * 生成支付代码
      * @param   array   $order  订单信息

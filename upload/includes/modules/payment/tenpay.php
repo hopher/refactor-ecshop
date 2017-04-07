@@ -69,23 +69,6 @@ if (isset($set_modules) && $set_modules == TRUE)
 class tenpay
 {
     /**
-     * 构造函数
-     *
-     * @access  public
-     * @param
-     *
-     * @return void
-     */
-    function tenpay()
-    {
-    }
-
-    function __construct()
-    {
-        $this->tenpay();
-    }
-
-    /**
      * 生成支付代码
      * @param   array    $order       订单信息
      * @param   array    $payment     支付方式信息
