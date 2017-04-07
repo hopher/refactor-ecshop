@@ -72,16 +72,6 @@ class sms
     var $errors  = array('api_errors'       => array('error_no' => -1, 'error_msg' => ''),
                          'server_errors'    => array('error_no' => -1, 'error_msg' => ''));
 
-    /**
-     * 构造函数
-     *
-     * @access  public
-     * @return  void
-     */
-    function __construct()
-    {
-        $this->sms();
-    }
 
     /**
      * 构造函数
@@ -89,7 +79,7 @@ class sms
      * @access  public
      * @return  void
      */
-    function sms()
+    function __construct()
     {
         /* 由于要包含init.php，所以这两个对象一定是存在的，因此直接赋值 */
         $this->db = $GLOBALS['db'];

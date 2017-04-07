@@ -47,11 +47,6 @@ class cls_mysql
 
     function __construct($dbhost, $dbuser, $dbpw, $dbname = '', $charset = 'gbk', $pconnect = 0, $quiet = 0)
     {
-        $this->cls_mysql($dbhost, $dbuser, $dbpw, $dbname, $charset, $pconnect, $quiet);
-    }
-
-    function cls_mysql($dbhost, $dbuser, $dbpw, $dbname = '', $charset = 'gbk', $pconnect = 0, $quiet = 0)
-    {
         if (defined('EC_CHARSET'))
         {
             $charset = strtolower(str_replace('-', '', EC_CHARSET));
@@ -914,5 +909,3 @@ class cls_mysql
         array_unique($this->mysql_disable_cache_tables);
     }
 }
-
-?>

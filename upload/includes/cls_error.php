@@ -33,18 +33,6 @@ class ecs_error
      */
     function __construct($tpl)
     {
-        $this->ecs_error($tpl);
-    }
-
-    /**
-     * 构造函数
-     *
-     * @access  public
-     * @param   string  $tpl
-     * @return  void
-     */
-    function ecs_error($tpl)
-    {
         $this->_template = $tpl;
     }
 
@@ -144,5 +132,3 @@ class ecs_error
         }
     }
 }
-
-?>

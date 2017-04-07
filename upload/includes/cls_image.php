@@ -39,11 +39,6 @@ class cls_image
 
     function __construct($bgcolor='')
     {
-        $this->cls_image($bgcolor);
-    }
-
-    function cls_image($bgcolor='')
-    {
         if ($bgcolor)
         {
             $this->bgcolor = $bgcolor;

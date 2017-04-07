@@ -591,5 +591,3 @@ class JSON
         return $arr;
     }
 }
-
-?>

@@ -85,7 +85,7 @@ class captcha
      * @param   integer $height     图片高度
      * @return  bool
      */
-    function captcha($folder = '', $width = 145, $height = 20)
+    function __construct($folder = '', $width = 145, $height = 20)
     {
         if (!empty($folder))
         {
@@ -107,20 +107,6 @@ class captcha
             return (((imagetypes() & IMG_GIF) > 0) || ((imagetypes() & IMG_JPG)) > 0 );
         }
     }
-
-    /**
-     * 构造函数
-     *
-     * @access  public
-     * @param
-     *
-     * @return void
-     */
-    function __construct($folder = '', $width = 145, $height = 20)
-    {
-        $this->captcha($folder, $width, $height);
-    }
-
 
     /**
      * 检查给出的验证码是否和session中的一致
@@ -280,5 +266,3 @@ class captcha
         return substr(implode('', $arr), 5, $length);
     }
 }
-
-?>

@@ -74,7 +74,7 @@ class Chinese
      * @返回值    无
      * @throws
      */
-    function Chinese($dir = './')
+    function __construct($dir = './')
     {
         $this->config['codetable_dir'] = $dir . "includes/codetable/";
 
@@ -673,5 +673,3 @@ class Chinese
         return $result;
     }
 }
-
-?>
