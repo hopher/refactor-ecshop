@@ -20,6 +20,8 @@ require(ROOT_PATH . 'includes/cls_transport.php');
 require(ROOT_PATH . 'includes/cls_json.php');
 
 require(ROOT_PATH . 'includes/shopex_json.php');
+// 版权去除，这里直接返回，不做什么事情
+make_json_result('0');
 
 $data['api_ver'] = '1.0';
 $data['version'] = VERSION;
