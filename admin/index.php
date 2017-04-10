@@ -521,10 +521,10 @@ elseif ($_REQUEST['act'] == 'main_api')
 
         $apiget = "ver= $ecs_version &lang= $ecs_lang &release= $ecs_release &php_ver= $php_ver &mysql_ver= $mysql_ver &ocount= $ocount &oamount= $oamount &gcount= $gcount &charset= $ecs_charset &usecount= $ecs_user &template= $ecs_template &style= $ecs_style &url= $shop_url &patch= $patch_file ";
 
-        $t = new transport;
-        $api_comment = $t->request('http://api.ecshop.com/checkver.php', $apiget);
-        $api_str = $api_comment["body"];
-        echo $api_str;
+        //$t = new transport;
+        //$api_comment = $t->request('http://api.ecshop.com/checkver.php', $apiget);
+        //$api_str = $api_comment["body"];
+        //echo $api_str;
         
         $f=ROOT_PATH . 'data/config.php'; 
         file_put_contents($f,str_replace("'API_TIME', '".API_TIME."'","'API_TIME', '".date('Y-m-d H:i:s',time())."'",file_get_contents($f)));
@@ -1203,74 +1203,6 @@ elseif ($_REQUEST['act'] == 'send_mail')
         $db->query($sql);
         $count = $db->getOne("SELECT COUNT(*) FROM " . $ecs->table('email_sendlist'));
         make_json_result('', sprintf($_LANG['mailsend_fail'],$row['email']), array('count' => $count));
-    }
-}
-
-/*------------------------------------------------------ */
-//-- license操作
-/*------------------------------------------------------ */
-elseif ($_REQUEST['act'] == 'license')
-{
-    $is_ajax = $_GET['is_ajax'];
-
-    if (isset($is_ajax) && $is_ajax)
-    {
-        // license 检查
-        include_once(ROOT_PATH . 'includes/cls_transport.php');
-        include_once(ROOT_PATH . 'includes/cls_json.php');
-        include_once(ROOT_PATH . 'includes/lib_main.php');
-        include_once(ROOT_PATH . 'includes/lib_license.php');
-
-        $license = license_check();
-        switch ($license['flag'])
-        {
-            case 'login_succ':
-                if (isset($license['request']['info']['service']['ecshop_b2c']['cert_auth']['auth_str']))
-                {
-                    make_json_result(process_login_license($license['request']['info']['service']['ecshop_b2c']['cert_auth']));
-                }
-                else
-                {
-                    make_json_error(0);
-                }
-            break;
-
-            case 'login_fail':
-            case 'login_ping_fail':
-                make_json_error(0);
-            break;
-
-            case 'reg_succ':
-                $_license = license_check();
-                switch ($_license['flag'])
-                {
-                    case 'login_succ':
-                        if (isset($_license['request']['info']['service']['ecshop_b2c']['cert_auth']['auth_str']) && $_license['request']['info']['service']['ecshop_b2c']['cert_auth']['auth_str'] != '')
-                        {
-                            make_json_result(process_login_license($license['request']['info']['service']['ecshop_b2c']['cert_auth']));
-                        }
-                        else
-                        {
-                            make_json_error(0);
-                        }
-                    break;
-
-                    case 'login_fail':
-                    case 'login_ping_fail':
-                        make_json_error(0);
-                    break;
-                }
-            break;
-
-            case 'reg_fail':
-            case 'reg_ping_fail':
-                make_json_error(0);
-            break;
-        }
-    }
-    else
-    {
-        make_json_error(0);
     }
 }
 

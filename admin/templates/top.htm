@@ -105,10 +105,6 @@
 </style>
 {insert_scripts files="../js/transport.js"}
 <script type="text/javascript">
-onload = function()
-{
-  Ajax.call('index.php?is_ajax=1&act=license','', start_sendmail_Response, 'GET', 'JSON');
-}
 /**
  * 帮助系统调用
  */
@@ -187,11 +183,11 @@ var adminId = "{$admin_id}";
 </head>
 <body>
 <div id="header-div">
-  <div id="logo-div" style="bgcolor:#000000;"><img src="images/ecshop_logo.gif" alt="ECSHOP - power for e-commerce" /></div>
+  <div id="logo-div" style="bgcolor:#000000;"><img src="images/ecshop_logo.gif" alt="" /></div>
   <div id="license-div" style="bgcolor:#000000;"></div>
   <div id="submenu-div">
     <ul>
-      <li><a href="index.php?act=about_us" target="main-frame">{$lang.about}</a></li>
+      <li><a href="index.php?act=about_us" target="main-frame">关于CUTV</a></li>
       <li><a href="javascript:web_address();">{$lang.help}</a></li>
       <li><a href="../" target="_blank">{$lang.preview}</a></li>
       <li><a href="message.php?act=list" target="main-frame">{$lang.view_message}</a></li>

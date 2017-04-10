@@ -57,7 +57,7 @@ if($act =='menu_api')
     {
         $t = new transport;
        $apiget = "ver= $data[version] &ecs_lang= $data[ecs_lang] &charset= $data[charset]&ent_id=$data[ent_id]& certificate_id=$data[certificate_id]";
-        $api_comment = $t->request('http://cloud.ecshop.com/menu_api.php', $apiget);
+        //$api_comment = $t->request('http://cloud.ecshop.com/menu_api.php', $apiget);
         $api_str = $api_comment["body"];
         if (!empty($api_str))
         {
@@ -155,7 +155,7 @@ elseif($act == 'close_remind')
             if (admin_priv('all','',false))
             {
                 $apiget.="&act=close_remind&ent_ac=$data[ent_ac]";
-                $result=$t->request('http://cloud.ecshop.com/cloud_remind.php', $apiget);
+                //$result=$t->request('http://cloud.ecshop.com/cloud_remind.php', $apiget);
                 $api_str = $result["body"];
                 //var_dump($api_str);
                 $api_arr = array();
