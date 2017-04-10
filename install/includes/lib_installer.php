@@ -695,32 +695,6 @@ function deal_aftermath()
 
     $db = new cls_mysql($db_host, $db_user, $db_pass, $db_name);
 
-    /* 初始化友情链接 */
-    $sql = "INSERT INTO $prefix"."friend_link ".
-                "(link_name, link_url, link_logo, show_order)".
-            "VALUES ".
-                "('".$_LANG['default_friend_link']."', 'http://www.ecshop.com/', 'http://www.ecshop.com/images/logo/ecshop_logo.gif','50')";
-    if (!$db->query($sql, 'SILENT'))
-    {
-        $err->add($db->errno() .' '. $db->error());
-    }
-
-    $sql = "INSERT INTO $prefix"."friend_link ".
-                "(link_name, link_url, show_order)".
-            "VALUES ".
-                "('".$_LANG['maifou_friend_link']."', 'http://www.maifou.net/','51')";
-    if (!$db->query($sql, 'SILENT'))
-    {
-        $err->add($db->errno() .' '. $db->error());
-    }
-    $sql = "INSERT INTO $prefix"."friend_link ".
-                "(link_name, link_url, show_order)".
-            "VALUES ".
-                "('".$_LANG['wdwd_friend_link']."', 'http://www.wdwd.com/','52')";
-    if (!$db->query($sql, 'SILENT'))
-    {
-        $err->add($db->errno() .' '. $db->error());
-    }
     /* 更新 ECSHOP 安装日期 */
     $sql = "UPDATE $prefix"."shop_config SET value='" .time(). "' WHERE code='install_date'";
     if (!$db->query($sql, 'SILENT'))
